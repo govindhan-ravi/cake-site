@@ -5,10 +5,6 @@ pipeline {
         skipDefaultCheckout() // Prevents the automatic checkout at the start
     }
 
-    tools {
-        nodejs 'node' // Ensure Node.js is configured in Global Tool Configuration
-    }
-
     environment {
         SCANNER_HOME = tool 'sonar-scanner' // Ensure SonarQube Scanner is configured in Global Tool Configuration
     }
@@ -23,6 +19,10 @@ pipeline {
 
         stage('Install Dependencies') {
             steps {
+                script {
+                    def nodeHome = tool 'node'
+                    env.PATH = "${nodeHome}/bin:${env.PATH}"
+                }
                 echo 'Installing dependencies...'
                 sh 'npm install'
             }
@@ -30,6 +30,10 @@ pipeline {
 
         stage('ESLint') {
             steps {
+                script {
+                    def nodeHome = tool 'node'
+                    env.PATH = "${nodeHome}/bin:${env.PATH}"
+                }
                 echo 'Running ESLint...'
                 sh 'npm run lint'
             }
@@ -37,6 +41,10 @@ pipeline {
 
         stage('Tests') {
             steps {
+                script {
+                    def nodeHome = tool 'node'
+                    env.PATH = "${nodeHome}/bin:${env.PATH}"
+                }
                 echo 'Running tests...'
                 sh 'npm test -- --watchAll=false'
             }
