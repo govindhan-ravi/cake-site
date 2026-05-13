@@ -10,13 +10,6 @@ pipeline {
     }
 
     stages {
-        stage('Git Checkout') {
-            steps {
-                echo 'Checking out source code...'
-                checkout scm
-            }
-        }
-
         stage('Install Dependencies') {
             steps {
                 echo 'Installing dependencies...'
