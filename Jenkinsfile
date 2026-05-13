@@ -1,5 +1,9 @@
 pipeline {
     agent any
+    
+    options {
+        skipDefaultCheckout() // Prevents the automatic checkout at the start
+    }
 
     tools {
         nodejs 'node' // Ensure Node.js is configured in Global Tool Configuration
