@@ -3,6 +3,6 @@ import App from './App';
 
 test('renders brand name', () => {
   render(<App />);
-  const brandElement = screen.getByText(/SP Cakes & Delight/i);
-  expect(brandElement).toBeInTheDocument();
+  const brandElements = screen.getAllByText(/SP Cakes & Delight/i);
+  expect(brandElements.length).toBeGreaterThan(0);
 });
