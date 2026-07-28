@@ -1,8 +1,12 @@
 pipeline {
     agent any
-    
     options {
         skipDefaultCheckout() // Prevents the automatic checkout at the start
+    }
+
+    parameters {
+        string(name: 'AWS_REGION', defaultValue: 'us-east-1', description: 'AWS Region of the EKS Cluster')
+        string(name: 'EKS_CLUSTER_NAME', defaultValue: 'my-eks-cluster', description: 'Name of the EKS Cluster')
     }
 
     environment {
@@ -11,8 +15,8 @@ pipeline {
         DOCKER_CREDENTIALS_ID = 'docker-hub-credentials'
         IMAGE_NAME = 'govindhan1234/cake-site-2'
         IMAGE_TAG = "${env.BUILD_NUMBER}"
-        AWS_REGION = 'us-east-1'
-        EKS_CLUSTER_NAME = 'my-eks-cluster'
+        AWS_REGION = "${params.AWS_REGION ?: 'us-east-1'}"
+        EKS_CLUSTER_NAME = "${params.EKS_CLUSTER_NAME ?: 'my-eks-cluster'}"
         AWS_CREDENTIALS_ID = 'aws-credentials' // Jenkins credential ID for AWS access
     }
 
