@@ -9,7 +9,7 @@ pipeline {
         SCANNER_HOME = tool 'sonar-scanner' // Ensure SonarQube Scanner is configured in Global Tool Configuration
         DOCKER_REGISTRY = 'docker.io'
         DOCKER_CREDENTIALS_ID = 'docker-hub-credentials'
-        IMAGE_NAME = 'yourusername/cake-site-2'
+        IMAGE_NAME = 'govindhan1234/cake-site-2'
         IMAGE_TAG = "${env.BUILD_NUMBER}"
         AWS_REGION = 'us-east-1'
         EKS_CLUSTER_NAME = 'my-eks-cluster'
