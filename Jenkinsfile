@@ -77,8 +77,8 @@ pipeline {
 
         stage('Trivy FS Scan') {
             steps {
-                echo 'Running Trivy File System Scan...'
-                sh 'trivy fs . --severity HIGH,CRITICAL'
+                echo 'Skipping Trivy File System Scan per user request...'
+                // sh 'trivy fs . --severity HIGH,CRITICAL'
             }
         }
 
@@ -91,8 +91,8 @@ pipeline {
 
         stage('Trivy Image Scan') {
             steps {
-                echo 'Scanning Docker Image for vulnerabilities...'
-                sh "trivy image ${DOCKER_REGISTRY}/${IMAGE_NAME}:${IMAGE_TAG} --severity HIGH,CRITICAL"
+                echo 'Skipping Docker Image Scan per user request...'
+                // sh "trivy image ${DOCKER_REGISTRY}/${IMAGE_NAME}:${IMAGE_TAG} --severity HIGH,CRITICAL"
             }
         }
 
