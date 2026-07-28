@@ -1,0 +1,29 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: cake-site-deployment
+  labels:
+    app: cake-site
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: cake-site
+  template:
+    metadata:
+      labels:
+        app: cake-site
+    spec:
+      containers:
+      - name: cake-site
+        # This image will be updated dynamically by the Jenkins pipeline
+        image: docker.io/yourusername/cake-site-2:latest
+        ports:
+        - containerPort: 80
+        resources:
+          requests:
+            cpu: 100m
+            memory: 128Mi
+          limits:
+            cpu: 250m
+            memory: 256Mi
