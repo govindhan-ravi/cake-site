@@ -60,8 +60,10 @@ pipeline {
         stage('SonarQube Scan') {
             steps {
                 echo 'Starting SonarQube Scan...'
-                withSonarQubeEnv('sonar-server') { // Ensure SonarQube server is configured in Jenkins
-                    sh "${SCANNER_HOME}/bin/sonar-scanner"
+                withSonarQubeEnv('sonar-server') {
+                    withCredentials([string(credentialsId: 'sonar-token', variable: 'SONAR_TOKEN')]) {
+                        sh "${SCANNER_HOME}/bin/sonar-scanner -Dsonar.login=\$SONAR_TOKEN"
+                    }
                 }
             }
         }
