@@ -110,6 +110,7 @@ pipeline {
                 echo 'Deploying to Amazon EKS...'
                 withCredentials([aws(credentialsId: env.AWS_CREDENTIALS_ID, accessKeyVariable: 'AWS_ACCESS_KEY_ID', secretKeyVariable: 'AWS_SECRET_ACCESS_KEY')]) {
                     sh """
+                        aws sts get-caller-identity
                         aws eks update-kubeconfig --region ${AWS_REGION} --name ${EKS_CLUSTER_NAME}
                         kubectl apply -f k8s/
                         kubectl set image deployment/cake-site-deployment cake-site=${DOCKER_REGISTRY}/${IMAGE_NAME}:${IMAGE_TAG}
