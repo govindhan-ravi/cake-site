@@ -11,7 +11,7 @@ pipeline {
         IMAGE_NAME = 'govindhan1234/cake-site-2'
         IMAGE_TAG = "${env.BUILD_NUMBER}"
         AWS_REGION = 'us-east-1'
-        EKS_CLUSTER_NAME = 'fabulous-sculpture-1785246408'
+        EKS_CLUSTER_NAME = 'db4freash-cluster'
         AWS_CREDENTIALS_ID = 'aws-credentials' // Jenkins credential ID for AWS access
     }
 
